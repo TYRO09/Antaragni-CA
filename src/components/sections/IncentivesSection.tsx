@@ -9,7 +9,7 @@ import { assets } from "@/lib/assets";
 
 export function IncentivesSection() {
   return (
-    <section className="relative w-full flex flex-col pt-16 md:pt-24 pb-12 overflow-hidden border-t border-white/5 bg-[#050505]">
+    <section id="incentives" className="relative w-full flex flex-col pt-16 md:pt-24 pb-12 overflow-hidden border-t border-white/5 bg-[#050505]">
       {/* Ambient background glow */}
       <div className="absolute inset-0 bg-[#050505] -z-10" />
 

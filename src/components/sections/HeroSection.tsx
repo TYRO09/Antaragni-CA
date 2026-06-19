@@ -15,7 +15,7 @@ export function HeroSection() {
   const archY = useTransform(scrollY, [0, 500], [0, 20]); // Subtle parallax (moving slightly opposite to scroll)
 
   return (
-    <section className="relative w-full min-h-[calc(100vh-80px)] flex flex-col pt-12 md:pt-20 pb-20 overflow-hidden">
+    <section id="home" className="relative w-full min-h-[calc(100vh-80px)] flex flex-col pt-12 md:pt-20 pb-20 overflow-hidden">
       {/* Background Volumetric Spotlight */}
       <motion.div 
         className="absolute top-[40%] right-[20%] w-[800px] h-[800px] opacity-[0.05] pointer-events-none mix-blend-screen" 

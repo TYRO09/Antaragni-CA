@@ -1,13 +1,14 @@
+import Link from "next/link";
 import { NavigationLink } from "../ui/NavigationLink";
 
 export function Navbar() {
   const links = [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
-    { label: "Program", href: "/program" },
-    { label: "Benefits", href: "/benefits" },
-    { label: "Eligibility", href: "/eligibility" },
-    { label: "FAQ", href: "/faq" },
+    { label: "Incentives", href: "/program" },
+    { label: "Responsibilities", href: "/benefits" },
+    { label: "FAQ", href: "/eligibility" },
+    { label: "Sponsors", href: "/faq" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -30,6 +31,12 @@ export function Navbar() {
             {link.label}
           </NavigationLink>
         ))}
+        <Link 
+          href="#" 
+          className="font-sans font-semibold text-[12px] uppercase tracking-[0.05em] text-accent px-5 py-2 rounded-full border border-accent/40 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 ml-2"
+        >
+          Dashboard
+        </Link>
       </div>
       
       {/* Mobile Menu Icon */}

@@ -111,6 +111,7 @@ function TeamCard({ person, index }: { person: any, index: number }) {
 export function ContactSection() {
   return (
     <motion.section 
+      id="contact"
       className="relative w-full flex flex-col py-20 md:py-32 overflow-hidden bg-black border-t border-white/5 min-h-[85vh] justify-center"
       initial="hidden"
       whileInView="visible"
