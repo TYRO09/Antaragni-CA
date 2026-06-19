@@ -7,7 +7,7 @@ import { EditorialSubheading } from "../ui/EditorialSubheading";
 import { VerticalLabel } from "../ui/VerticalLabel";
 import { StatisticBlock } from "../ui/StatisticBlock";
 import { GridContainer } from "../layout/GridContainer";
-import { fadeUp, staggerContainer, EASING } from "@/lib/animations";
+import { fadeUp, staggerContainer, EASING, useStaggerHeading } from "@/lib/animations";
 import { AtmosphericHaze } from "../lighting/AtmosphericHaze";
 import { GradientDiffusion } from "../lighting/GradientDiffusion";
 import { assets } from "@/lib/assets";
@@ -15,6 +15,7 @@ import { assets } from "@/lib/assets";
 export function HeroSection() {
   const { scrollY } = useScroll();
   const archY = useTransform(scrollY, [0, 500], [0, 20]); // Subtle parallax (moving slightly opposite to scroll)
+  const { ref: headingRef, controls, containerVariants, childVariants } = useStaggerHeading(0.08, 0.2);
 
   return (
     <section className="relative w-full min-h-[calc(100vh-80px)] flex flex-col pt-12 md:pt-20 pb-20 overflow-hidden">
@@ -25,12 +26,17 @@ export function HeroSection() {
         {/* Left Side: Typography */}
         <div className="col-span-1 md:col-span-5 lg:col-span-7 flex flex-col justify-center">
           <motion.div
-            variants={fadeUp}
+            ref={headingRef as any}
+            variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            animate={controls}
           >
             <EditorialHeading variant="hero" as="h1" className="mb-2 text-foreground">
-              ANTARAGNI
+              {"ANTARAGNI".split("").map((letter, index) => (
+                <motion.span key={index} variants={childVariants} className="inline-block">
+                  {letter}
+                </motion.span>
+              ))}
             </EditorialHeading>
           </motion.div>
           

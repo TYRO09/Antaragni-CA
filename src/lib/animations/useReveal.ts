@@ -2,7 +2,7 @@ import { useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { ANIMATION_CONFIG } from "./animationConfig";
 
-export function useEditorialReveal(delay: number = 0) {
+export function useReveal(delay: number = 0) {
   const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, ANIMATION_CONFIG.VIEWPORT);
   const controls = useAnimation();

@@ -8,7 +8,7 @@ import { MetadataLabel } from "../ui/MetadataLabel";
 import { StatisticBlock } from "../ui/StatisticBlock";
 import { GridContainer } from "../layout/GridContainer";
 import { fadeUp, staggerContainer, scrollReveal } from "@/lib/animations";
-import { useEditorialReveal } from "@/lib/animations/useEditorialReveal";
+import { useReveal } from "@/lib/animations/useReveal";
 import { useFadeUp } from "@/lib/animations/useFadeUp";
 import { useImageReveal } from "@/lib/animations/useImageReveal";
 import { useCounter } from "@/lib/animations/useCounter";
@@ -16,7 +16,7 @@ import { assets } from "@/lib/assets";
 import { AtmosphericHaze } from "../lighting/AtmosphericHaze";
 
 export function SpiritSection() {
-  const { ref: headingRef, controls: headingControls, initial: headingInitial } = useEditorialReveal(0.1);
+  const { ref: headingRef, controls: headingControls, initial: headingInitial } = useReveal(0.1);
   const { ref: textRef, controls: textControls, initial: textInitial } = useFadeUp(0.3);
   const { ref: imgRef, controls: imgControls, initial: imgInitial } = useImageReveal(0.2);
   const { ref: statRef, value: statValue } = useCounter(10, 2);
