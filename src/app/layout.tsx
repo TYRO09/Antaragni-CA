@@ -1,8 +1,32 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const helveticaNeue = localFont({
+  src: [
+    {
+      path: "../../public/assets/fonts/helvetica-neue-5/HelveticaNeueRoman.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/helvetica-neue-5/HelveticaNeueMedium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/helvetica-neue-5/HelveticaNeueBold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-sans",
+});
+
+const bodoniModa = localFont({
+  src: "../../public/assets/fonts/Bodoni_Moda/BodoniModa-VariableFont_opsz,wght.ttf",
+  variable: "--font-serif",
+});
 
 export const metadata: Metadata = {
   title: "Antaragni Campus Ambassador Program",
@@ -16,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans bg-background text-foreground antialiased`}>
+      <body className={`${helveticaNeue.variable} ${bodoniModa.variable} font-sans bg-background text-foreground antialiased`}>
         {children}
       </body>
     </html>
