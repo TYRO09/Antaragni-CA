@@ -60,7 +60,7 @@ export function ExpectationsSection() {
 
             {/* Decorative Diagonal Line */}
             <motion.div 
-              className="hidden md:block w-[150px] md:w-[350px] lg:w-[500px] h-[1px] bg-accent mr-0 lg:mr-10" 
+              className="hidden md:block w-[150px] md:w-[350px] lg:w-[500px] max-w-[calc(100vw-40px)] h-[1px] bg-accent mr-0 lg:mr-10" 
               style={{ transformOrigin: "left center" }}
               variants={lineDraw}
               initial="hidden"

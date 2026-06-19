@@ -129,8 +129,9 @@ export function SponsorsSection() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
+              className="max-w-full"
             >
-              <h2 className="text-accent text-3xl md:text-4xl lg:text-5xl font-medium uppercase tracking-[0.2em] whitespace-nowrap">
+              <h2 className="text-accent text-[clamp(1.5rem,7vw,3rem)] font-medium uppercase tracking-[0.15em] md:tracking-[0.2em] break-words">
                 OUR VALUED SUPPORTERS
               </h2>
             </motion.div>
@@ -181,7 +182,7 @@ export function SponsorsSection() {
 
                   {/* Sponsor Logos */}
                   <motion.div 
-                    className="w-full flex flex-wrap items-center justify-center gap-x-12 gap-y-8 md:gap-x-16 lg:gap-x-24 group/logos px-4"
+                    className="w-full flex flex-wrap items-center justify-center gap-x-6 gap-y-8 md:gap-x-16 lg:gap-x-24 group/logos px-4"
                     variants={logoContainerVariant}
                   >
                     {group.logos.map((sponsor) => (
@@ -196,7 +197,7 @@ export function SponsorsSection() {
                         style={{ x: smoothX, y: smoothY }}
                         className="flex items-center justify-center transition-opacity duration-300 opacity-80 hover:!opacity-100 group-hover/logos:opacity-40 cursor-default"
                       >
-                        <div className="relative w-[120px] md:w-[160px] lg:w-[200px] h-[60px] md:h-[80px] lg:h-[100px] flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                        <div className="relative w-[clamp(80px,25vw,120px)] md:w-[160px] lg:w-[200px] h-[60px] md:h-[80px] lg:h-[100px] flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
                            <Image src={sponsor.src} alt={sponsor.name} fill className="object-contain" />
                         </div>
                       </motion.div>

@@ -100,6 +100,7 @@ body {
 .item-column {
   position: relative;
   flex: 1 1 0;
+  min-width: 0;
   height: 100%;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   perspective: 900px;
@@ -119,9 +120,11 @@ body {
 .item-name {
   font-size: clamp(0.6rem, 0.8vw, 0.85rem);
   font-weight: 700;
-  letter-spacing: 0.26em;
+  letter-spacing: clamp(0.1em, 0.26em, 0.26em);
   line-height: 1.5;
   display: block;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .item-img-wrap {

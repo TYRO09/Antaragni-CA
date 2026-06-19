@@ -171,7 +171,7 @@ export function ContactSection() {
         </div>
 
         {/* RIGHT COLUMN: Team Grid (approx 68%) */}
-        <div className="col-span-1 md:col-span-8 flex flex-col justify-center h-full lg:pr-16 relative">
+        <div className="col-span-1 md:col-span-8 flex flex-col justify-center h-full lg:pr-24 xl:pr-32 relative">
           
           {/* Desktop & Tablet 6-Col Internal Grid */}
           <div className="hidden md:grid grid-cols-6 gap-x-4 lg:gap-x-6 gap-y-12 lg:gap-y-16 w-full">

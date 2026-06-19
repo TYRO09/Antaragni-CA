@@ -136,7 +136,7 @@ export function FinalCtaSection() {
             variants={fadeUpVariant}
             className="col-span-1 flex justify-center order-1 md:order-2 w-full mb-8 md:mb-0"
           >
-            <button className="group relative border border-accent/40 bg-black/20 backdrop-blur-sm px-10 py-4 lg:px-14 lg:py-5 transition-all duration-500 ease-out hover:border-accent hover:bg-accent/20 active:scale-[0.98]">
+            <button className="group relative border border-accent/40 bg-black/20 backdrop-blur-sm px-6 md:px-10 py-4 lg:px-14 lg:py-5 transition-all duration-500 ease-out hover:border-accent hover:bg-accent/20 active:scale-[0.98] min-w-0 max-w-full">
               <span className="relative z-10 text-white text-[10px] md:text-[11px] lg:text-xs tracking-[0.3em] font-medium uppercase">
                 APPLY NOW
               </span>

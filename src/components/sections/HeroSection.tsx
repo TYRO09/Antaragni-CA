@@ -64,9 +64,9 @@ export function HeroSection() {
         <div className="col-span-1 md:col-span-3 lg:col-span-4 flex flex-col justify-center relative mt-16 md:mt-0">
           
           {/* Silhouette Image */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none -z-10 -ml-20 mt-10">
+          <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none -z-10 -ml-10 md:-ml-20 mt-10 overflow-hidden md:overflow-visible">
             <motion.div 
-              className="relative w-[460px] h-[920px]" 
+              className="relative w-[min(460px,100vw)] aspect-[1/2] max-h-[120vh]" 
               style={{ y: archY }}
             >
               <Image src={assets.hero.silhouette} alt="silhouette" fill className="object-contain" priority />

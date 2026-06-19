@@ -23,8 +23,8 @@ export function SpiritSection() {
           whileInView="visible"
           viewport={scrollReveal}
         >
-          <motion.div variants={fadeUp}>
-            <EditorialHeading variant="section" className="mb-10 text-foreground">
+          <motion.div variants={fadeUp} className="max-w-full overflow-hidden">
+            <EditorialHeading variant="section" className="mb-10 text-foreground break-words hyphens-auto">
               SPIRIT OF<br/>ANTARAGNI
             </EditorialHeading>
           </motion.div>
@@ -79,9 +79,9 @@ export function SpiritSection() {
       </GridContainer>
 
       {/* Bottom Row: Statistics */}
-      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-10 lg:px-20 mt-32">
+      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-10 lg:px-20 mt-32 min-w-0">
         <motion.div 
-          className="w-full grid grid-cols-2 md:grid-cols-5 border-t border-b border-white/5 py-12 md:py-16 gap-y-12 relative"
+          className="w-full grid grid-cols-2 md:grid-cols-5 border-t border-b border-white/5 py-12 md:py-16 gap-y-12 relative min-w-0"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
