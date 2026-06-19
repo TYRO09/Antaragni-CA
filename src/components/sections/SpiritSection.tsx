@@ -66,12 +66,11 @@ export function SpiritSection() {
           {/* Replaced static circle with AtmosphericHaze */}
           <AtmosphericHaze color="crimson" intensity="dense" />
           
-          {/* Hero Image Area */}
           <motion.div 
             ref={imgRef as any}
             initial={imgInitial}
             animate={imgControls}
-            className="absolute top-1/2 -translate-y-1/2 right-0 md:right-[-5%] w-[100%] md:w-[120%] lg:w-[110%] h-[120%] min-h-[600px] lg:min-h-[800px] flex items-center justify-center origin-center pointer-events-none z-0"
+            className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-[-5%] w-[100vw] md:w-[120%] lg:w-[110%] h-[120%] min-h-[600px] lg:min-h-[800px] flex items-center justify-center origin-center pointer-events-none z-0"
           >
              <Image 
                src={assets.spirit.crowd} 

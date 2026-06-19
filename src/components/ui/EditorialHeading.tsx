@@ -15,9 +15,9 @@ export function EditorialHeading({
   const baseStyles = "font-serif uppercase -tracking-[0.02em]";
   
   const variants = {
-    hero: "text-[10vw] xl:text-[130px] leading-[0.9]",
-    section: "text-[80px] leading-none",
-    number: "text-[36px] md:text-[48px] leading-none tracking-[0.02em]",
+    hero: "text-[clamp(60px,10vw,130px)] xl:text-[130px] leading-[0.9]",
+    section: "text-[clamp(44px,8vw,80px)] leading-none",
+    number: "text-[clamp(28px,4vw,48px)] leading-none tracking-[0.02em]",
   };
 
   return (

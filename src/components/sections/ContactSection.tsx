@@ -123,8 +123,8 @@ export function ContactSection() {
 
       <GridContainer className="items-stretch h-full relative z-10">
         
-        {/* LEFT COLUMN: Editorial Text (approx 32%) */}
-        <div className="col-span-1 md:col-span-4 flex flex-col justify-center relative z-10 h-full">
+        {/* LEFT COLUMN: Editorial Text */}
+        <div className="col-span-1 md:col-span-3 lg:col-span-4 flex flex-col justify-center relative z-10 h-full">
           
           <div className="flex items-center gap-4 mb-8 lg:mb-10 pt-16 md:pt-0 mt-auto md:mt-0">
             <span className="text-accent text-[10px] md:text-xs tracking-[0.2em] uppercase font-medium whitespace-nowrap">
@@ -174,8 +174,8 @@ export function ContactSection() {
 
         </div>
 
-        {/* RIGHT COLUMN: Team Grid (approx 68%) */}
-        <div className="col-span-1 md:col-span-8 flex flex-col justify-center h-full lg:pr-24 xl:pr-32 relative">
+        {/* RIGHT COLUMN: Team Grid */}
+        <div className="col-span-1 md:col-span-5 lg:col-span-8 flex flex-col justify-center h-full lg:pr-24 xl:pr-32 relative">
           
           {/* Desktop & Tablet 6-Col Internal Grid */}
           <div className="hidden md:grid grid-cols-6 gap-x-4 lg:gap-x-6 gap-y-12 lg:gap-y-16 w-full">
