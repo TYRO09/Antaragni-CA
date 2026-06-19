@@ -5,6 +5,8 @@ import { EditorialHeading } from "../ui/EditorialHeading";
 import { assets } from "@/lib/assets";
 import { VisualEditor } from "../editor/VisualEditor";
 import { EditableElement } from "../editor/EditableElement";
+import { Spotlight } from "../lighting/Spotlight";
+import { AmbientLight } from "../lighting/AmbientLight";
 
 export function IncentivesSection() {
   const spotlightRef = useRef<HTMLDivElement>(null);
@@ -23,7 +25,7 @@ export function IncentivesSection() {
     const tick = () => {
       if (spotlightRef.current) {
         const halfW = window.innerWidth / 2;
-        const targetOffsetX = mouseX - halfW;
+        const targetOffsetX = (mouseX - halfW) * 0.5; // reduced movement range for subtler effect
         currentOffsetX += (targetOffsetX - currentOffsetX) * 0.14;
         spotlightRef.current.style.transform = `translateX(${currentOffsetX}px)`;
       }
@@ -61,9 +63,12 @@ export function IncentivesSection() {
     <VisualEditor>
       <section className="relative w-full flex flex-col pt-16 md:pt-24 pb-12 overflow-hidden border-t border-white/5 bg-[#050505] min-h-[90vh]">
         <div className="absolute inset-0 bg-[#050505] -z-10" />
+        <AmbientLight color="white" intensity="faint" />
 
         <EditableElement id="spotlight" className="absolute inset-0 z-5 pointer-events-none">
-          <div ref={spotlightRef} className="spotlight-overlay" />
+          <div ref={spotlightRef} className="absolute inset-0 w-full h-full pointer-events-none">
+            <Spotlight intensity="focused" position="top" />
+          </div>
         </EditableElement>
 
         <div className="w-full max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col flex-1 relative z-10">

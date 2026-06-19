@@ -3,6 +3,8 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { AtmosphericHaze } from "../lighting/AtmosphericHaze";
+import { LightBeam } from "../lighting/LightBeam";
 import { assets } from "@/lib/assets";
 
 const easeOut = [0.25, 0.1, 0.25, 1];
@@ -52,19 +54,16 @@ export function FinalCtaSection() {
       {/* Background & Atmospheric Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         
-        {/* Spotlight (1st) */}
-        <motion.div 
-          custom={0}
-          variants={fadeVariant}
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[120vw] h-[80vh] max-w-[1200px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/15 via-white/5 to-transparent opacity-60 z-20 blur-[60px]"
-        />
+        {/* Core Atmosphere */}
+        <motion.div custom={0} variants={fadeVariant}>
+          <AtmosphericHaze color="warm" intensity="heavy" />
+        </motion.div>
         
-        {/* Red Glow (2nd) */}
-        <motion.div 
-          custom={1}
-          variants={fadeVariant}
-          className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/40 via-accent/5 to-transparent blur-[80px] opacity-70 z-10"
-        />
+        {/* Cinematic Beams crossing behind the silhouette */}
+        <motion.div custom={1} variants={fadeVariant}>
+          <LightBeam color="crimson" angle={25} className="w-[150vw] h-[600px] -left-[20%] top-[20%]" />
+          <LightBeam color="crimson" angle={-25} className="w-[150vw] h-[600px] -right-[20%] top-[20%]" />
+        </motion.div>
 
         {/* Silhouette Image (3rd) */}
         <motion.div 

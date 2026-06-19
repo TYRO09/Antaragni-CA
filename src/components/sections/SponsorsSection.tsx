@@ -7,6 +7,7 @@ import { EditorialHeading } from "../ui/EditorialHeading";
 import { GridContainer } from "../layout/GridContainer";
 import { cn } from "@/lib/utils";
 import { assets } from "@/lib/assets";
+import { AmbientLight } from "../lighting/AmbientLight";
 
 const sponsorGroups = [
   {
@@ -113,11 +114,12 @@ export function SponsorsSection() {
 
   return (
     <section 
-      className="relative w-full flex flex-col py-10 md:py-16 overflow-hidden bg-black border-t border-white/5 min-h-[85vh] lg:h-[90vh] justify-center"
+      className="relative w-full flex flex-col py-10 md:py-16 overflow-hidden bg-black border-t border-white/5 min-h-[85vh] lg:h-[90vh] justify-center z-10"
       onMouseMove={handleMouseMove}
       onMouseLeave={resetMouse}
     >
-      <GridContainer className="items-center h-full flex flex-col">
+      <AmbientLight color="white" intensity="faint" />
+      <GridContainer className="items-center h-full flex flex-col relative z-10">
         
         {/* Main Content Area */}
         <div className="col-span-1 md:col-span-8 lg:col-span-12 flex flex-col w-full h-full justify-center">

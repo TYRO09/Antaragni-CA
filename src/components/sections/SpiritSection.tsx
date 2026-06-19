@@ -7,29 +7,42 @@ import { BodyText } from "../ui/BodyText";
 import { MetadataLabel } from "../ui/MetadataLabel";
 import { StatisticBlock } from "../ui/StatisticBlock";
 import { GridContainer } from "../layout/GridContainer";
-import { fadeUp, fadeIn, staggerContainer, revealMaskBottom, scrollReveal, EASING } from "@/lib/animations";
+import { fadeUp, staggerContainer, scrollReveal } from "@/lib/animations";
+import { useEditorialReveal } from "@/lib/animations/useEditorialReveal";
+import { useFadeUp } from "@/lib/animations/useFadeUp";
+import { useImageReveal } from "@/lib/animations/useImageReveal";
+import { useCounter } from "@/lib/animations/useCounter";
 import { assets } from "@/lib/assets";
+import { AtmosphericHaze } from "../lighting/AtmosphericHaze";
 
 export function SpiritSection() {
+  const { ref: headingRef, controls: headingControls, initial: headingInitial } = useEditorialReveal(0.1);
+  const { ref: textRef, controls: textControls, initial: textInitial } = useFadeUp(0.3);
+  const { ref: imgRef, controls: imgControls, initial: imgInitial } = useImageReveal(0.2);
+  const { ref: statRef, value: statValue } = useCounter(10, 2);
+
   return (
     <section className="relative w-full flex flex-col py-24 md:py-32 overflow-hidden border-t border-white/5">
       <GridContainer className="items-start">
         
         {/* Left Side: Typography & Legacy Copy */}
-        <motion.div 
-          className="col-span-1 md:col-span-5 lg:col-span-6 flex flex-col pt-10"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={scrollReveal}
-        >
-          <motion.div variants={fadeUp} className="max-w-full overflow-hidden">
+        <div className="col-span-1 md:col-span-5 lg:col-span-6 flex flex-col pt-10 relative z-10">
+          <motion.div 
+            ref={headingRef as any} 
+            initial={headingInitial} 
+            animate={headingControls} 
+            className="max-w-full overflow-hidden"
+          >
             <EditorialHeading variant="section" className="mb-10 text-foreground break-words hyphens-auto">
               SPIRIT OF<br/>ANTARAGNI
             </EditorialHeading>
           </motion.div>
           
-          <motion.div variants={fadeUp}>
+          <motion.div 
+            ref={textRef as any} 
+            initial={textInitial} 
+            animate={textControls}
+          >
             <BodyText className="mb-12 max-w-[480px]">
               Born in 1965, Antaragni is North India&apos;s largest cultural festival, 
               hosted by IIT Kanpur. Every year, we welcome over 150,000 students 
@@ -39,28 +52,26 @@ export function SpiritSection() {
             </BodyText>
           </motion.div>
 
-          <motion.hr variants={fadeUp} className="w-16 border-t border-accent mb-8" />
+          <hr className="w-16 border-t border-accent mb-8 opacity-50" />
           
-          <motion.div variants={fadeUp}>
+          <div>
             <MetadataLabel color="red">
               CULTURE. CREATIVITY. CONNECTION.
             </MetadataLabel>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Right Side: Hero Image Area */}
         <div className="col-span-1 md:col-span-3 lg:col-span-6 relative mt-16 md:mt-0 min-h-[500px] flex items-center justify-center pointer-events-none">
-          {/* Volumetric Spotlight mimicking the stage lights */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white opacity-[0.05] blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
+          {/* Replaced static circle with AtmosphericHaze */}
+          <AtmosphericHaze color="crimson" intensity="dense" />
           
           {/* Hero Image Area */}
           <motion.div 
+            ref={imgRef as any}
+            initial={imgInitial}
+            animate={imgControls}
             className="absolute top-1/2 -translate-y-1/2 right-0 md:right-[-5%] w-[100%] md:w-[120%] lg:w-[110%] h-[120%] min-h-[600px] lg:min-h-[800px] flex items-center justify-center origin-center pointer-events-none z-0"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={scrollReveal}
-            transition={{ ease: EASING, duration: 1.4 }}
           >
              <Image 
                src={assets.spirit.crowd} 
@@ -88,9 +99,9 @@ export function SpiritSection() {
           viewport={scrollReveal}
         >
           
-          <motion.div variants={fadeUp} className="col-span-1 border-r border-white/5 flex justify-center">
+          <motion.div ref={statRef as any} variants={fadeUp} className="col-span-1 border-r border-white/5 flex justify-center">
             <StatisticBlock 
-              value="10" 
+              value={statValue.toString()} 
               suffix="K+"
               label={"VOICES\nUNITED"} 
               valueColor="red"

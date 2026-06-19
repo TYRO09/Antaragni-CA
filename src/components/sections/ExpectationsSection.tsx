@@ -5,6 +5,7 @@ import { EditorialHeading } from "../ui/EditorialHeading";
 import { VerticalLabel } from "../ui/VerticalLabel";
 import { GridContainer } from "../layout/GridContainer";
 import { fadeUp, staggerContainer, revealMask, lineDraw, fadeIn, scrollReveal } from "@/lib/animations";
+import { AmbientLight } from "../lighting/AmbientLight";
 
 const expectations = [
   {
@@ -31,8 +32,11 @@ const expectations = [
 
 export function ExpectationsSection() {
   return (
-    <section className="relative w-full flex flex-col py-24 md:py-32 bg-black overflow-hidden">
-      <GridContainer className="items-stretch">
+    <section className="relative w-full flex flex-col py-24 md:py-32 bg-black overflow-hidden z-10">
+      {/* Subtle ambient light to warm the darkness */}
+      <AmbientLight color="crimson" intensity="faint" />
+
+      <GridContainer className="items-stretch relative z-10">
         
         {/* Main Content Area (Left 11 Columns) */}
         <div className="col-span-1 md:col-span-7 lg:col-span-11 flex flex-col">

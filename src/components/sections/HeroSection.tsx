@@ -7,7 +7,9 @@ import { EditorialSubheading } from "../ui/EditorialSubheading";
 import { VerticalLabel } from "../ui/VerticalLabel";
 import { StatisticBlock } from "../ui/StatisticBlock";
 import { GridContainer } from "../layout/GridContainer";
-import { fadeUp, fadeIn, staggerContainer, EASING } from "@/lib/animations";
+import { fadeUp, staggerContainer, EASING } from "@/lib/animations";
+import { AtmosphericHaze } from "../lighting/AtmosphericHaze";
+import { GradientDiffusion } from "../lighting/GradientDiffusion";
 import { assets } from "@/lib/assets";
 
 export function HeroSection() {
@@ -16,13 +18,8 @@ export function HeroSection() {
 
   return (
     <section className="relative w-full min-h-[calc(100vh-80px)] flex flex-col pt-12 md:pt-20 pb-20 overflow-hidden">
-      {/* Background Volumetric Spotlight */}
-      <motion.div 
-        className="absolute top-[40%] right-[20%] w-[800px] h-[800px] opacity-[0.05] pointer-events-none mix-blend-screen" 
-        style={{ y: archY }}
-      >
-        <Image src={assets.textures.spotlight} alt="spotlight" fill className="object-contain" priority />
-      </motion.div>
+      {/* Background Volumetric Spotlight replaced by AtmosphericHaze */}
+      <AtmosphericHaze color="white" intensity="dense" />
       
       <GridContainer className="flex-grow relative z-10 items-center">
         {/* Left Side: Typography */}
@@ -63,8 +60,9 @@ export function HeroSection() {
         {/* Right Side: Stats */}
         <div className="col-span-1 md:col-span-3 lg:col-span-4 flex flex-col justify-center relative mt-16 md:mt-0">
           
-          {/* Silhouette Image */}
+          {/* Silhouette Image with lighting */}
           <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none -z-10 -ml-10 md:-ml-20 mt-10 overflow-hidden md:overflow-visible">
+            <GradientDiffusion color="white" className="opacity-50" />
             <motion.div 
               className="relative w-[min(460px,100vw)] aspect-[1/2] max-h-[120vh]" 
               style={{ y: archY }}

@@ -7,6 +7,7 @@ import { GridContainer } from "../layout/GridContainer";
 import { VerticalLabel } from "../ui/VerticalLabel";
 import { cn } from "@/lib/utils";
 import { assets } from "@/lib/assets";
+import { GradientDiffusion } from "../lighting/GradientDiffusion";
 
 const team = [
   { name: "RITVIK MALHOTRA", role: "OVERALL COORDINATOR" },
@@ -111,13 +112,16 @@ function TeamCard({ person, index }: { person: any, index: number }) {
 export function ContactSection() {
   return (
     <motion.section 
-      className="relative w-full flex flex-col py-20 md:py-32 overflow-hidden bg-black border-t border-white/5 min-h-[85vh] justify-center"
+      className="relative w-full flex flex-col py-20 md:py-32 overflow-hidden bg-black border-t border-white/5 min-h-[85vh] justify-center z-10"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
       variants={sectionVariant}
     >
-      <GridContainer className="items-stretch h-full relative">
+      {/* Soft desk lamp illumination */}
+      <GradientDiffusion color="white" className="opacity-20 max-w-[800px] left-0 translate-x-[-20%] pointer-events-none" />
+
+      <GridContainer className="items-stretch h-full relative z-10">
         
         {/* LEFT COLUMN: Editorial Text (approx 32%) */}
         <div className="col-span-1 md:col-span-4 flex flex-col justify-center relative z-10 h-full">
