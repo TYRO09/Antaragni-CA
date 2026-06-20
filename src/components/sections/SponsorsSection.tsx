@@ -73,7 +73,8 @@ export function SponsorsSection() {
 
   return (
     <section 
-      className="relative w-full flex flex-col py-10 md:py-16 overflow-hidden bg-black border-t border-white/5 min-h-[85vh] lg:h-[90vh] justify-center z-10"
+      id="sponsors"
+      className="relative w-full flex flex-col py-10 md:py-16 overflow-hidden bg-black border-t border-white/5 min-h-[85vh] lg:h-[90vh] justify-center"
       onMouseMove={handleMouseMove}
       onMouseLeave={resetMouse}
     >

@@ -22,7 +22,7 @@ export function SpiritSection() {
   const { ref: statRef, value: statValue } = useCounter(10, 2);
 
   return (
-    <section className="relative w-full flex flex-col py-24 md:py-32 overflow-hidden border-t border-white/5">
+    <section id="about" className="relative w-full flex flex-col py-24 md:py-32 overflow-hidden border-t border-white/5">
       <GridContainer className="items-start">
         
         {/* Left Side: Typography & Legacy Copy */}

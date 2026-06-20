@@ -25,9 +25,14 @@ export function HeroSection() {
   const { ref: stat3Ref, value: stat3Val } = useCounter(400, 2.5);
 
   return (
-    <section className="relative w-full min-h-[calc(100vh-80px)] flex flex-col pt-12 md:pt-20 pb-20 overflow-hidden">
-      {/* Background Volumetric Spotlight replaced by AtmosphericHaze */}
-      <AtmosphericHaze color="white" intensity="dense" />
+    <section id="home" className="relative w-full min-h-[calc(100vh-80px)] flex flex-col pt-12 md:pt-20 pb-20 overflow-hidden">
+      {/* Background Volumetric Spotlight */}
+      <motion.div 
+        className="absolute top-[40%] right-[20%] w-[800px] h-[800px] opacity-[0.05] pointer-events-none mix-blend-screen" 
+        style={{ y: archY }}
+      >
+        <Image src={assets.textures.spotlight} alt="spotlight" fill className="object-contain" priority />
+      </motion.div>
       
       <GridContainer className="flex-grow relative z-10 items-center">
         {/* Left Side: Typography */}

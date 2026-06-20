@@ -66,10 +66,12 @@ export function ContactSection() {
 
   return (
     <motion.section 
-      ref={sectionRef as any}
-      initial={sectionInitial}
-      animate={sectionControls}
-      className="relative w-full flex flex-col py-20 md:py-32 overflow-hidden bg-black border-t border-white/5 min-h-[85vh] justify-center z-10"
+      id="contact"
+      className="relative w-full flex flex-col py-20 md:py-32 overflow-hidden bg-black border-t border-white/5 min-h-[85vh] justify-center"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={sectionVariant}
     >
       {/* Soft desk lamp illumination */}
       <GradientDiffusion color="white" className="opacity-20 max-w-[800px] left-0 translate-x-[-20%] pointer-events-none" />

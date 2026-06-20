@@ -66,14 +66,23 @@ export function IncentivesSection() {
   }, []);
 
   return (
-    <VisualEditor>
-      <section className="relative w-full flex flex-col pt-16 md:pt-24 pb-12 overflow-hidden border-t border-white/5 bg-[#050505] min-h-[90vh]">
-        <div className="absolute inset-0 bg-[#050505] -z-10" />
-        <AmbientLight color="white" intensity="faint" />
+    <section id="incentives" className="relative w-full flex flex-col pt-16 md:pt-24 pb-12 overflow-hidden border-t border-white/5 bg-[#050505]">
+      {/* Ambient background glow */}
+      <div className="absolute inset-0 bg-[#050505] -z-10" />
 
-        <EditableElement id="spotlight" className="absolute inset-0 z-5 pointer-events-none">
-          <div ref={spotlightRef} className="absolute inset-0 w-full h-full pointer-events-none">
-            <Spotlight intensity="focused" position="top" />
+      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
+        
+        {/* Typography Header Block */}
+        <div className="flex flex-col items-start mb-6 md:mb-12 relative z-10">
+          <EditorialHeading variant="section" className="text-foreground mb-4 md:mb-6">
+            INCENTIVES
+          </EditorialHeading>
+          
+          <div className="flex flex-col gap-1 text-accent tracking-[0.2em] text-[13px] md:text-[15px] font-medium">
+            <span>RECOGNITION.</span>
+            <span>EXPERIENCE.</span>
+            <span>GROWTH.</span>
+            <span>LEGACY.</span>
           </div>
         </EditableElement>
 
