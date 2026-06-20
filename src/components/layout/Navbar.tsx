@@ -19,7 +19,7 @@ export function Navbar() {
         <div className="w-10 h-12 flex items-center justify-center">
           {/* Brand Monogram placeholder based on reference - A red abstract shape */}
           <svg viewBox="0 0 40 48" fill="none" className="w-full h-full text-accent">
-            <path d="M20 0 L40 48 L25 48 L20 30 L15 48 L0 48 Z" fill="currentColor"/>
+            <path d="M20 0 L40 48 L25 48 L20 30 L15 48 L0 48 Z" fill="currentColor" />
           </svg>
         </div>
       </div>
@@ -31,18 +31,18 @@ export function Navbar() {
             {link.label}
           </NavigationLink>
         ))}
-        <Link 
-          href="#" 
+        <Link
+          href="/dashboard"
           className="font-sans font-semibold text-[12px] uppercase tracking-[0.05em] text-accent px-5 py-2 rounded-full border border-accent/40 hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 ml-2"
         >
           Dashboard
         </Link>
       </div>
-      
+
       {/* Mobile Menu Icon */}
       <div className="md:hidden text-foreground">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M3 12H21M3 6H21M3 18H21"/>
+          <path d="M3 12H21M3 6H21M3 18H21" />
         </svg>
       </div>
     </nav>
