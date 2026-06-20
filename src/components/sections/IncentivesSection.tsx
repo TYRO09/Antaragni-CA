@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import Image from "next/image";
 import { EditorialHeading } from "../ui/EditorialHeading";
 import { assets } from "@/lib/assets";
 import { VisualEditor } from "../editor/VisualEditor";
@@ -99,10 +100,12 @@ export function IncentivesSection() {
             <div className="stage-container">
               
               <EditableElement id="pedestals">
-                <img 
+                <Image 
                   src={assets.incentives.pedestals} 
                   alt="Exhibition Platforms" 
-                  className="stage-base drop-shadow-2xl opacity-90 brightness-[0.85]" 
+                  fill
+                  priority
+                  className="object-cover object-bottom drop-shadow-2xl opacity-90 brightness-[0.85]" 
                 />
               </EditableElement>
 
@@ -111,13 +114,15 @@ export function IncentivesSection() {
                 {/* 01: Certificate */}
                 <div className="item-column">
                   <EditableElement id="certificate-image">
-                    <div className="item-img-wrap">
-                      <img 
-                        src={assets.incentives.certificate} 
-                        alt="Certificate" 
-                        className="item-img"
-                        style={{ height: "100%" }}
-                      />
+                    <div className="item-img-wrap flex items-end justify-center">
+                      <div className="relative w-full" style={{ height: "100%" }}>
+                        <Image 
+                          src={assets.incentives.certificate} 
+                          alt="Certificate" 
+                          fill
+                          className="item-img"
+                        />
+                      </div>
                     </div>
                   </EditableElement>
                   <EditableElement id="certificate-label" className="item-label">
@@ -129,13 +134,15 @@ export function IncentivesSection() {
                 {/* 02: Pronite Pass */}
                 <div className="item-column">
                   <EditableElement id="pass-image">
-                    <div className="item-img-wrap">
-                      <img 
-                        src={assets.incentives.pass} 
-                        alt="Pronite Pass" 
-                        className="item-img"
-                        style={{ height: "72%" }}
-                      />
+                    <div className="item-img-wrap flex items-end justify-center">
+                      <div className="relative w-full" style={{ height: "72%" }}>
+                        <Image 
+                          src={assets.incentives.pass} 
+                          alt="Pronite Pass" 
+                          fill
+                          className="item-img"
+                        />
+                      </div>
                     </div>
                   </EditableElement>
                   <EditableElement id="pass-label" className="item-label">
@@ -147,13 +154,15 @@ export function IncentivesSection() {
                 {/* 03: Merchandise */}
                 <div className="item-column">
                   <EditableElement id="merchandise-image">
-                    <div className="item-img-wrap">
-                      <img 
-                        src={assets.incentives.merchandise} 
-                        alt="Merchandise" 
-                        className="item-img"
-                        style={{ height: "105%" }}
-                      />
+                    <div className="item-img-wrap flex items-end justify-center">
+                      <div className="relative w-full" style={{ height: "105%" }}>
+                        <Image 
+                          src={assets.incentives.merchandise} 
+                          alt="Merchandise" 
+                          fill
+                          className="item-img"
+                        />
+                      </div>
                     </div>
                   </EditableElement>
                   <EditableElement id="merchandise-label" className="item-label">
@@ -165,13 +174,15 @@ export function IncentivesSection() {
                 {/* 04: Opportunities */}
                 <div className="item-column">
                   <EditableElement id="opportunities-image">
-                    <div className="item-img-wrap">
-                      <img 
-                        src={assets.incentives.opportunities} 
-                        alt="Opportunities" 
-                        className="item-img"
-                        style={{ height: "82%" }}
-                      />
+                    <div className="item-img-wrap flex items-end justify-center">
+                      <div className="relative w-full" style={{ height: "82%" }}>
+                        <Image 
+                          src={assets.incentives.opportunities} 
+                          alt="Opportunities" 
+                          fill
+                          className="item-img"
+                        />
+                      </div>
                     </div>
                   </EditableElement>
                   <EditableElement id="opportunities-label" className="item-label">

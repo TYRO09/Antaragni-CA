@@ -1,24 +1,24 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [0.2.0] - Phase 3 Completion
+### Changed
+- Refactored `FAQSection`, `SponsorsSection`, and `FinalCtaSection` to utilize the centralized animation framework (`src/lib/animations/`).
+- Refactored `HeroSection`, `ExpectationsSection`, `ContactSection` and `IncentivesSection`.
+- Eliminated all manual Framer Motion variants scattered across components, ensuring strict consistency with the custom cinematic easing `[0.16, 1, 0.3, 1]`.
+- Verified and finalized the Visual Editor Hierarchy for `IncentivesSection` - items are now wrapped in individual `EditableElement`s inside `ProductContainer` logic.
+- Standardized UI hooks such as `useFadeUp` and `useReveal` globally.
 
-## [Unreleased]
+## [0.1.0] - Phase 2 Completion
 ### Added
-- Created Phase tracking structure (`docs/screenshots/before` & `after`).
-- Created autonomous agent protocol tracking files (`CHANGELOG.md`, `PERMISSIONS_REQUIRED.md`).
+- Centralized motion framework in `src/lib/animations/`.
+- Cinematic custom easing constants.
+### Fixed
+- Responsive grid alignment issues across mobile screens.
 
-### Fixed (Phase 1: Responsive Stabilization)
-- **Typography:** Applied `clamp()` to `EditorialHeading` and `EditorialSubheading` to prevent text overlap on mobile screens.
-- **HeroSection:** Removed negative margin on mobile that caused horizontal overflow.
-- **SpiritSection:** Fixed absolute positioning of the crowd image so it spans edge-to-edge on mobile (`w-[100vw]`).
-- **IncentivesSection:** Fixed text wrapping collision on pedestals by adjusting font clamps and enforcing `break-word` and `hyphens`.
-- **ContactSection:** Fixed tablet column span issues where 12 columns were pushed into an 8-column layout, causing stacking breaks.
-
-### Added (Phase 2: Motion Framework)
-- Created `src/lib/animations/index.ts` to export all motion hooks cleanly.
-- Refactored `src/lib/animations.ts` to `src/lib/animations/variants.ts` to avoid naming conflicts.
-- Implemented and applied `useStaggerHeading` to the HeroSection heading (`ANTARAGNI`).
-- Applied `useReveal` to the SpiritSection heading.
-- Applied `useFadeUp` to the SpiritSection paragraph.
-- Applied `useImageReveal` to the SpiritSection image.
-- Applied `useCounter` to the SpiritSection statistic.
+## [0.3.0] - Phase 4 Completion
+### Changed
+- Replaced native `<img>` tags in `IncentivesSection` with `next/image` to optimize Largest Contentful Paint (LCP) and enforce strict, responsive dimension constraints.
+- Recovered Visual Editor layout state (`src/config/incentives-layout.ts`) after corrupted `rotate` parameter caused a 404 router crash.
+### Added
+- Comprehensive SEO metadata including OpenGraph, Twitter Cards, and keywords added to `src/app/layout.tsx`.
+- Refactored `themeColor` into Next.js 14 `viewport` export standard.
