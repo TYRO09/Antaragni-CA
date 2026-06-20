@@ -31,7 +31,7 @@ const expectations = [
 
 export function ExpectationsSection() {
   return (
-    <section className="relative w-full flex flex-col py-24 md:py-32 bg-black overflow-hidden">
+    <section id="responsibilities" className="relative w-full flex flex-col py-24 md:py-32 bg-black overflow-hidden">
       <GridContainer className="items-stretch">
         
         {/* Main Content Area (Left 11 Columns) */}
