@@ -7,6 +7,7 @@ import { GridContainer } from "../layout/GridContainer";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { assets } from "@/lib/assets";
+import { useReveal, useFadeUp } from "@/lib/animations";
 
 const faqData = [
   {
@@ -81,6 +82,8 @@ const faqData = [
 
 export function FAQSection() {
   const [expandedId, setExpandedId] = useState<string>("03");
+  const { ref: headingRef, controls: headingControls, initial: headingInitial } = useReveal(0.1);
+  const { ref: textRef, controls: textControls, initial: textInitial } = useFadeUp(0.3);
 
   const toggleExpand = (id: string) => {
     setExpandedId((prev) => (prev === id ? "" : id));
@@ -97,24 +100,26 @@ export function FAQSection() {
         
         {/* Top Hero Area */}
         <div className="col-span-1 md:col-span-8 flex flex-col mb-24 md:mb-32">
-          <EditorialHeading 
-            as="h2" 
-            variant="hero" 
-            className="text-[15vw] md:text-[140px] leading-[0.85] text-foreground flex flex-col mb-12"
-          >
-            <span>BEFORE</span>
-            <span>YOU</span>
-            <span>APPLY</span>
-          </EditorialHeading>
+          <motion.div ref={headingRef as any} initial={headingInitial} animate={headingControls}>
+            <EditorialHeading 
+              as="h2" 
+              variant="hero" 
+              className="text-[15vw] md:text-[140px] leading-[0.85] text-foreground flex flex-col mb-12"
+            >
+              <span>BEFORE</span>
+              <span>YOU</span>
+              <span>APPLY</span>
+            </EditorialHeading>
+          </motion.div>
           
-          <div className="flex flex-col gap-4 mt-6">
+          <motion.div ref={textRef as any} initial={textInitial} animate={textControls} className="flex flex-col gap-4 mt-6">
             <p className="text-muted text-[10px] md:text-[12px] uppercase tracking-[0.2em] font-sans font-semibold leading-[1.8] max-w-[300px]">
               Questions are natural.<br/>
               Clarity empowers you<br/>
               to take the first step.
             </p>
             <div className="w-12 h-[2px] bg-accent mt-2" />
-          </div>
+          </motion.div>
         </div>
 
         {/* Right Side Editorial Label */}

@@ -8,6 +8,7 @@ import { VerticalLabel } from "../ui/VerticalLabel";
 import { cn } from "@/lib/utils";
 import { assets } from "@/lib/assets";
 import { GradientDiffusion } from "../lighting/GradientDiffusion";
+import { useFadeUp, useReveal } from "@/lib/animations";
 
 const team = [
   { name: "RITVIK MALHOTRA", role: "OVERALL COORDINATOR" },
@@ -25,68 +26,16 @@ const placeholders = [
   assets.contact.sanchit
 ];
 
-// No spring effects, pure cinematic ease
-const easeOut = [0.25, 0.1, 0.25, 1];
-
-const sectionVariant = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 1.2, ease: easeOut } 
-  }
-};
-
-const fadeVariant = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 1.2, ease: easeOut, delay: 0.4 } }
-};
-
-const lineXVariant = {
-  hidden: { scaleX: 0 },
-  visible: { scaleX: 1, transition: { duration: 1.4, ease: easeOut, delay: 0.2 } }
-};
-
-const lineYVariant = {
-  hidden: { scaleY: 0 },
-  visible: { scaleY: 1, transition: { duration: 1.4, ease: easeOut, delay: 0.5 } }
-};
-
-const headingLineVariant = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.15,
-      duration: 1.2,
-      ease: easeOut
-    }
-  })
-};
-
-const cardVariant = {
-  hidden: { opacity: 0, y: 15 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.08,
-      duration: 0.9,
-      ease: easeOut
-    }
-  })
-};
+// No custom variants; using standardized hooks now
 
 function TeamCard({ person, index }: { person: any, index: number }) {
+  const { ref, controls, initial } = useFadeUp(0.1 * index);
   return (
     <motion.div 
+      ref={ref as any}
+      initial={initial}
+      animate={controls}
       className="flex flex-col gap-4 lg:gap-5 group cursor-pointer w-full"
-      custom={index}
-      variants={cardVariant}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
     >
       <div className="relative w-full aspect-[3/4] overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.8)] pointer-events-none z-10 mix-blend-overlay" />
@@ -110,13 +59,17 @@ function TeamCard({ person, index }: { person: any, index: number }) {
 }
 
 export function ContactSection() {
+  const { ref: sectionRef, controls: sectionControls, initial: sectionInitial } = useFadeUp();
+  const { ref: headingRef, controls: headingControls, initial: headingInitial } = useReveal(0.2);
+  const { ref: textRef, controls: textControls, initial: textInitial } = useFadeUp(0.4);
+  const { ref: railRef, controls: railControls, initial: railInitial } = useFadeUp(0.6);
+
   return (
     <motion.section 
+      ref={sectionRef as any}
+      initial={sectionInitial}
+      animate={sectionControls}
       className="relative w-full flex flex-col py-20 md:py-32 overflow-hidden bg-black border-t border-white/5 min-h-[85vh] justify-center z-10"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      variants={sectionVariant}
     >
       {/* Soft desk lamp illumination */}
       <GradientDiffusion color="white" className="opacity-20 max-w-[800px] left-0 translate-x-[-20%] pointer-events-none" />
@@ -130,37 +83,25 @@ export function ContactSection() {
             <span className="text-accent text-[10px] md:text-xs tracking-[0.2em] uppercase font-medium whitespace-nowrap">
               OUR TEAM
             </span>
-            <motion.div 
-              variants={lineXVariant} 
-              initial="hidden" 
-              whileInView="visible" 
-              viewport={{ once: true }}
-              className="h-[1px] bg-accent/40 w-full max-w-[60px] md:max-w-[80px] origin-left" 
-            />
-          </div>
-
-          <div className="flex flex-col font-serif text-[clamp(40px,4.5vw,72px)] leading-[0.9] text-foreground mb-10 lg:mb-14">
-            <motion.div custom={0} variants={headingLineVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              CONTACT
-            </motion.div>
-            <motion.div custom={1} variants={headingLineVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              US
-            </motion.div>
+            <div className="h-[1px] bg-accent/40 w-full max-w-[60px] md:max-w-[80px] origin-left" />
           </div>
 
           <motion.div 
-            variants={lineXVariant} 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }}
-            className="h-[2px] w-8 bg-accent mb-8 lg:mb-10 origin-left" 
-          />
+            ref={headingRef as any}
+            initial={headingInitial}
+            animate={headingControls}
+            className="flex flex-col font-serif text-[clamp(40px,4.5vw,72px)] leading-[0.9] text-foreground mb-10 lg:mb-14"
+          >
+            <div>CONTACT</div>
+            <div>US</div>
+          </motion.div>
+
+          <div className="h-[2px] w-8 bg-accent mb-8 lg:mb-10 origin-left" />
 
           <motion.p 
-            variants={fadeVariant} 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }}
+            ref={textRef as any}
+            initial={textInitial}
+            animate={textControls}
             className="text-muted text-[10px] md:text-[11px] lg:text-xs leading-[2.4] tracking-[0.15em] uppercase max-w-[280px] pb-16 md:pb-0"
           >
             A collective of dreamers,<br/>
@@ -201,34 +142,18 @@ export function ContactSection() {
         </div>
 
         {/* EDITORIAL FRAME ELEMENTS - Right Edge */}
-        <div className="hidden lg:flex absolute right-6 md:right-10 lg:right-20 top-12 bottom-12 flex-col items-center pointer-events-none z-10 w-8">
-          
-          <motion.div 
-            variants={fadeVariant} 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }}
-            className="flex-shrink-0 mb-8 pt-8"
-          >
+        <motion.div 
+          ref={railRef as any}
+          initial={railInitial}
+          animate={railControls}
+          className="hidden lg:flex absolute right-6 md:right-10 lg:right-20 top-12 bottom-12 flex-col items-center pointer-events-none z-10 w-8"
+        >
+          <div className="flex-shrink-0 mb-8 pt-8">
             <VerticalLabel label="ANTARAGNI '26" color="red" />
-          </motion.div>
-          
-          <motion.div 
-            variants={lineYVariant} 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }}
-            className="w-[1px] flex-grow bg-accent/40 origin-top" 
-          />
-          
-          <motion.div 
-            variants={lineXVariant} 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }}
-            className="absolute bottom-0 right-1/2 w-16 h-[2px] bg-accent origin-right translate-y-8" 
-          />
-        </div>
+          </div>
+          <div className="w-[1px] flex-grow bg-accent/40 origin-top" />
+          <div className="absolute bottom-0 right-1/2 w-16 h-[2px] bg-accent origin-right translate-y-8" />
+        </motion.div>
 
       </GridContainer>
     </motion.section>

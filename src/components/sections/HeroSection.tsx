@@ -7,7 +7,8 @@ import { EditorialSubheading } from "../ui/EditorialSubheading";
 import { VerticalLabel } from "../ui/VerticalLabel";
 import { StatisticBlock } from "../ui/StatisticBlock";
 import { GridContainer } from "../layout/GridContainer";
-import { fadeUp, staggerContainer, EASING, useStaggerHeading } from "@/lib/animations";
+import { useStaggerHeading, useFadeUp, EASING } from "@/lib/animations";
+import { useCounter } from "@/lib/animations/useCounter";
 import { AtmosphericHaze } from "../lighting/AtmosphericHaze";
 import { GradientDiffusion } from "../lighting/GradientDiffusion";
 import { assets } from "@/lib/assets";
@@ -15,7 +16,13 @@ import { assets } from "@/lib/assets";
 export function HeroSection() {
   const { scrollY } = useScroll();
   const archY = useTransform(scrollY, [0, 500], [0, 20]); // Subtle parallax (moving slightly opposite to scroll)
-  const { ref: headingRef, controls, containerVariants, childVariants } = useStaggerHeading(0.08, 0.2);
+  const { ref: headingRef, controls: headingControls, containerVariants, childVariants } = useStaggerHeading(0.08, 0.2);
+  const { ref: subRef, controls: subControls, initial: subInitial } = useFadeUp(0.6);
+  const { ref: descRef, controls: descControls, initial: descInitial } = useFadeUp(0.8);
+  const { ref: statsRef, controls: statsControls, initial: statsInitial } = useFadeUp(1.0);
+  const { ref: stat1Ref, value: stat1Val } = useCounter(60, 2);
+  const { ref: stat2Ref, value: stat2Val } = useCounter(150, 2);
+  const { ref: stat3Ref, value: stat3Val } = useCounter(400, 2.5);
 
   return (
     <section className="relative w-full min-h-[calc(100vh-80px)] flex flex-col pt-12 md:pt-20 pb-20 overflow-hidden">
@@ -29,7 +36,7 @@ export function HeroSection() {
             ref={headingRef as any}
             variants={containerVariants}
             initial="hidden"
-            animate={controls}
+            animate={headingControls}
           >
             <EditorialHeading variant="hero" as="h1" className="mb-2 text-foreground">
               {"ANTARAGNI".split("").map((letter, index) => (
@@ -41,10 +48,9 @@ export function HeroSection() {
           </motion.div>
           
           <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={{ delay: 0.2 }}
+            ref={subRef as any}
+            initial={subInitial}
+            animate={subControls}
           >
             <EditorialSubheading className="mb-10 text-foreground">
               CAMPUS<br/>AMBASSADOR<br/>PROGRAM
@@ -52,9 +58,9 @@ export function HeroSection() {
           </motion.div>
 
           <motion.div 
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
+            ref={descRef as any}
+            initial={descInitial}
+            animate={descControls}
             className="flex flex-col gap-1.5 mt-8 md:mt-12 text-[12px] font-sans font-semibold tracking-[0.2em] uppercase"
           >
             <p className="text-muted">LEAD CULTURE.</p>
@@ -79,34 +85,34 @@ export function HeroSection() {
 
           {/* Statistics Block */}
           <motion.div 
+            ref={statsRef as any}
+            initial={statsInitial}
+            animate={statsControls}
             className="flex flex-col gap-16 items-end text-right z-10 relative"
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
           >
-            <motion.div variants={fadeUp}>
+            <div ref={stat1Ref as any}>
               <StatisticBlock 
-                value="60" 
+                value={stat1Val.toString()} 
                 label={"YEARS\nOF LEGACY"} 
                 className="items-end text-right"
               />
-            </motion.div>
-            <motion.div variants={fadeUp}>
+            </div>
+            <div ref={stat2Ref as any}>
               <StatisticBlock 
-                value="150" 
+                value={stat2Val.toString()} 
                 suffix="K+"
                 label={"ATTENDEES"} 
                 className="items-end text-right"
               />
-            </motion.div>
-            <motion.div variants={fadeUp}>
+            </div>
+            <div ref={stat3Ref as any}>
               <StatisticBlock 
-                value="400" 
+                value={stat3Val.toString()} 
                 suffix="+"
                 label={"COLLEGES"} 
                 className="items-end text-right"
               />
-            </motion.div>
+            </div>
           </motion.div>
         </div>
 

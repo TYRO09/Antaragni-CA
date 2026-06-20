@@ -7,10 +7,15 @@ import { VisualEditor } from "../editor/VisualEditor";
 import { EditableElement } from "../editor/EditableElement";
 import { Spotlight } from "../lighting/Spotlight";
 import { AmbientLight } from "../lighting/AmbientLight";
+import { useReveal, useFadeUp } from "@/lib/animations";
+import { motion } from "framer-motion";
 
 export function IncentivesSection() {
   const spotlightRef = useRef<HTMLDivElement>(null);
   const stageAreaRef = useRef<HTMLDivElement>(null);
+
+  const { ref: titleRef, controls: titleControls, initial: titleInitial } = useReveal(0.1);
+  const { ref: tagRef, controls: tagControls, initial: tagInitial } = useFadeUp(0.3);
 
   useEffect(() => {
     // 1. Spotlight Lerp Tracking
@@ -74,16 +79,20 @@ export function IncentivesSection() {
         <div className="w-full max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col flex-1 relative z-10">
           
           <EditableElement id="title" className="flex flex-col items-start mb-6 md:mb-12 relative z-10 flex-shrink-0">
-            <EditorialHeading variant="section" className="text-foreground mb-4 md:mb-6">
-              INCENTIVES
-            </EditorialHeading>
+            <motion.div ref={titleRef as any} initial={titleInitial} animate={titleControls}>
+              <EditorialHeading variant="section" className="text-foreground mb-4 md:mb-6">
+                INCENTIVES
+              </EditorialHeading>
+            </motion.div>
             
-            <EditableElement id="taglines" className="flex flex-col gap-1 text-accent tracking-[0.2em] text-[13px] md:text-[15px] font-medium">
-              <span>RECOGNITION.</span>
-              <span>EXPERIENCE.</span>
-              <span>GROWTH.</span>
-              <span>LEGACY.</span>
-            </EditableElement>
+            <motion.div ref={tagRef as any} initial={tagInitial} animate={tagControls}>
+              <EditableElement id="taglines" className="flex flex-col gap-1 text-accent tracking-[0.2em] text-[13px] md:text-[15px] font-medium">
+                <span>RECOGNITION.</span>
+                <span>EXPERIENCE.</span>
+                <span>GROWTH.</span>
+                <span>LEGACY.</span>
+              </EditableElement>
+            </motion.div>
           </EditableElement>
 
           <div className="stage-wrapper mt-auto">
