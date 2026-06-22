@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { InitialState } from "@/components/shared/InitialState";
+import { Toaster } from "react-hot-toast";
 
 const helveticaNeue = localFont({
   src: [
@@ -44,6 +45,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${helveticaNeue.variable} ${bodoniModa.variable} font-sans bg-background text-foreground antialiased`}>
         <InitialState document="CAs26" />
+        <Toaster />
         <Navbar />
         {children}
       </body>

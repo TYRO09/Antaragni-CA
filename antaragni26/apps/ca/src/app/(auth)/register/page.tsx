@@ -29,8 +29,12 @@ export default function Login() {
 	const router = useRouter()
 
 	useEffect(() => {
-		if (!loading && !user) {
-			router.push("/");
+		if (!loading) {
+			if (!user) {
+				router.push("/");
+			} else if (user.details) {
+				router.push("/dashboard");
+			}
 		}
 	}, [user, loading, router]);
 
@@ -97,7 +101,11 @@ export default function Login() {
 					twitter: twitter,
 					points: 0,
 				};
-				await setData("CAs26", user!.user.uid, UserData);
+				const isSuccess = await setData("CAs26", user!.user.uid, UserData);
+				if (!isSuccess) {
+					toast.error("Failed to register. Please check your connection or contact support.");
+					return;
+				}
 				setUser({ user: user!.user, details: UserData });
 				router.push("/dashboard")
 				toast.success("Registered Successfully!")

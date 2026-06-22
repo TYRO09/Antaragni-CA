@@ -10,8 +10,20 @@ import { StatisticBlock } from "../ui/StatisticBlock";
 import { GridContainer } from "../layout/GridContainer";
 import { fadeUp, fadeIn, staggerContainer, staggerFast, EASING } from "@/lib/animations";
 import { assets } from "@/lib/assets";
+import { useStore } from "@repo/store";
+import { firebaseGoogleSignIn, firebaseGetUser } from "@repo/firebase";
 
 export function HeroSection() {
+  const { user, setUser, setLoading } = useStore();
+  
+  const handleLogin = async () => {
+    if (!user) {
+      const result = await firebaseGoogleSignIn();
+      if (result) {
+        await firebaseGetUser("CAs26", setUser, setLoading);
+      }
+    }
+  };
   const { scrollY } = useScroll();
   const archY = useTransform(scrollY, [0, 500], [0, 22]);
   const bgOpacity = useTransform(scrollY, [0, 400], [0.05, 0]);
@@ -77,7 +89,7 @@ export function HeroSection() {
             animate="visible"
             custom={{ delay: 0.2 }}
           >
-            <EditorialSubheading className="mb-10 text-foreground">
+            <EditorialSubheading className="mb-10 text-foreground text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-[0.15em]">
               CAMPUS<br/>AMBASSADOR<br/>PROGRAM
             </EditorialSubheading>
           </motion.div>
@@ -119,20 +131,20 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 1.2, ease: EASING }}
             className="mt-10"
           >
-            <Link href="/dashboard" className="inline-block">
+            {!user && (
               <motion.button
+                onClick={handleLogin}
                 className="btn-glow group relative border border-accent/40 bg-black/20 backdrop-blur-sm px-10 py-4 lg:px-14 lg:py-5 transition-all duration-500 ease-out hover:border-accent hover:bg-accent/10 active:scale-[0.98]"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
               >
-                {/* Inner glow on hover */}
                 <span className="absolute inset-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(217,35,35,0.15), transparent)' }} />
                 <span className="relative z-10 text-white text-[10px] md:text-[11px] lg:text-xs tracking-[0.35em] font-medium uppercase transition-all duration-300 group-hover:tracking-[0.42em]">
                   APPLY NOW
                 </span>
               </motion.button>
-            </Link>
+            )}
           </motion.div>
         </div>
 
