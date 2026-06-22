@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { addData } from "@repo/firebase";
+import { useStore } from "@repo/store";
+import toast from "react-hot-toast";
 
 type IdeaCategory = "PROMOTION" | "OUTREACH" | "EVENT" | "SOCIAL_MEDIA" | "OTHER";
 
@@ -28,14 +31,35 @@ export function IdeasTab() {
     return !Object.keys(e).length;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { user } = useStore();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      const categoryLabel = CATEGORIES.find(c => c.value === category)?.label || category;
+      const formattedIdea = `Category: ${categoryLabel}\nTitle: ${title}\nDescription: ${description}`;
+      
+      const data = {
+        id: user?.details.id,
+        name: user?.details.name,
+        email: user?.details.email,
+        phone: user?.details.phone,
+        idea: formattedIdea,
+        college: user?.details.college,
+        collegeCity: user?.details.collegeCity,
+      };
+      
+      await addData("CAsIdeas25", data);
+      toast.success("Idea Submitted!");
       setSubmitted(true);
-    }, 900);
+    } catch (error) {
+      toast.error(`${error}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {

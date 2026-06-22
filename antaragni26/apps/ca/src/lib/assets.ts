@@ -13,11 +13,11 @@ export const assets = {
     pedestals: "/assets/incentives/base-pedestals.png",
   },
   contact: {
-    gundeep: "/assets/contact/gundeep.jpg",
-    harsh: "/assets/contact/harsh.jpeg",
-    sanchit: "/assets/contact/sanchit.jpeg",
-    vineet: "/assets/contact/vineet.jpg",
-    yashasvi: "/assets/contact/yashasvi.jpeg",
+    ish: "/assets/contact/ish.jpeg",
+    deepanshu: "/assets/contact/deepanshu.jpg",
+    dhruv: "/assets/contact/dhruv.jpeg",
+    rhythm: "/assets/contact/rhythm.jpeg",
+    madhur: "/assets/contact/madhur.jpeg",
   },
   sponsors: {
     easyShiksha: "/assets/sponsors/easy-shiksha.jpg",
