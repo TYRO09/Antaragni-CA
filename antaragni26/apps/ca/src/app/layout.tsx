@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${helveticaNeue.variable} ${bodoniModa.variable} font-sans bg-background text-foreground antialiased`}>
-        <InitialState document="CAs25" />
+        <InitialState document="CAs26" />
         <Navbar />
         {children}
       </body>

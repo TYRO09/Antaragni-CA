@@ -24,7 +24,7 @@ export function Select({
 			<RadixSelect.Trigger asChild>
 				<button
 					className={cn(
-						"group/select inline-flex h-10 w-full items-center justify-between rounded-md border-1 px-3 py-2 text-sm  shadow-input transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600"
+						"group/select inline-flex h-10 w-full items-center justify-between rounded-md border-1 border-white/10 bg-black/40 px-3 py-2 text-sm text-white shadow-input transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
 					)}
 				>
 					<RadixSelect.Value placeholder={placeholder} />
@@ -40,7 +40,7 @@ export function Select({
 					side="bottom"
 					sideOffset={4}
 					className={cn(
-						"z-50 w-[var(--radix-select-trigger-width)] overflow-hidden rounded-md border border-neutral-200 bg-white p-1 shadow-lg dark:border-neutral-700 dark:bg-zinc-900"
+						"z-50 w-[var(--radix-select-trigger-width)] overflow-hidden rounded-md border border-white/10 bg-[#0a0a0a] text-white p-1 shadow-lg"
 					)}
 				>
 					<RadixSelect.Viewport className="max-h-[20vh] overflow-y-auto">
@@ -49,7 +49,7 @@ export function Select({
 								key={option.value}
 								value={option.value}
 								className={cn(
-									"relative flex cursor-pointer select-none items-center rounded-sm px-3 py-2 text-sm outline-none transition hover:bg-[var(--pink)]"
+									"relative flex cursor-pointer select-none items-center rounded-sm px-3 py-2 text-sm outline-none transition hover:bg-white/10 focus:bg-white/10"
 								)}
 							>
 								<RadixSelect.ItemText>{option.label}</RadixSelect.ItemText>

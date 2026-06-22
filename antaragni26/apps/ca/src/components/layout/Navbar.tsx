@@ -30,7 +30,7 @@ export function Navbar() {
     if (!user) {
       const result = await firebaseGoogleSignIn();
       if (result) {
-        await firebaseGetUser("CAs25", setUser, setLoading);
+        await firebaseGetUser("CAs26", setUser, setLoading);
       }
     } else {
       await firebaseLogout(setUser);

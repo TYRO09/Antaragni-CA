@@ -24,8 +24,8 @@ export function TasksTab() {
 
   const getAllTasks = async () => {
     try {
-      const allTasks = await getAllDocs("tasksCA25");
-      const submissions = await queryData("CAsSubmissions25", "id", user?.details?.id);
+      const allTasks = await getAllDocs("tasksCA26");
+      const submissions = await queryData("CAsSubmissions26", "id", user?.details?.id);
 
       if (submissions != null && allTasks != null) {
         const fetchedTasks: Task[] = [];
@@ -88,7 +88,7 @@ export function TasksTab() {
           college: user?.details.college,
           collegeCity: user?.details.collegeCity,
         };
-        await addData("CAsSubmissions25", data);
+        await addData("CAsSubmissions26", data);
         toast.success("Submission Accepted!");
         setLink("");
         getAllTasks();

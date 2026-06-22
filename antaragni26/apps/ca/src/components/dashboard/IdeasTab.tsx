@@ -52,7 +52,7 @@ export function IdeasTab() {
         collegeCity: user?.details.collegeCity,
       };
       
-      await addData("CAsIdeas25", data);
+      await addData("CAsIdeas26", data);
       toast.success("Idea Submitted!");
       setSubmitted(true);
     } catch (error) {

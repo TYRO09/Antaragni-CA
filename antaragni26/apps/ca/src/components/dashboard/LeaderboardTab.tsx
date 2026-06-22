@@ -16,7 +16,7 @@ export function LeaderboardTab() {
 
   const getAllCAs = async () => {
     try {
-      const fbData = await getSortedData("CAs25", "points", 20);
+      const fbData = await getSortedData("CAs26", "points", 20);
       if (fbData != null) {
         const entries = fbData.map((ca: any, index: number) => ({
           rank: index + 1,

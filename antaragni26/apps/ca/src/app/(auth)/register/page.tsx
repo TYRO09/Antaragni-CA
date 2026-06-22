@@ -20,7 +20,7 @@ import toast from "react-hot-toast";
 
 
 export default function Login() {
-	const { user, setUser, setLoading } = useStore();
+	const { user, setUser, loading, setLoading } = useStore();
 	const uid = new ShortUniqueId({
 		length: 10,
 		dictionary: "alphanum_upper",
@@ -52,12 +52,12 @@ export default function Login() {
 
 	const awardPoint = async () => {
 		try {
-			const rawUsers = await queryData("CAs25", "id", referrer);
+			const rawUsers = await queryData("CAs26", "id", referrer);
 			if (rawUsers.length > 0) {
 				const user = rawUsers[0];
 				let points = user?.data.points;
 				points += 10;
-				await updateData("CAs25", user!.uid, { points: points });
+				await updateData("CAs26", user!.uid, { points: points });
 			}
 		} catch (error) {
 			toast.error(`${error}`);
@@ -97,8 +97,8 @@ export default function Login() {
 					twitter: twitter,
 					points: 0,
 				};
-				await setData("CAs25", user!.user.uid, UserData);
-				firebaseGetUser("CAs25",setUser, setLoading);
+				await setData("CAs26", user!.user.uid, UserData);
+				setUser({ user: user!.user, details: UserData });
 				router.push("/dashboard")
 				toast.success("Registered Successfully!")
 				if (referrer !== "") {
@@ -118,7 +118,7 @@ export default function Login() {
 		<div className="bg-background min-h-screen">
 			<Section className="min-h-screen flex flex-col items-center justify-center gap-5 pt-16">
 				<div className="heading text-2xl md:!text-4xl lg:!text-6xl">
-					ANTARAGNI 25
+					ANTARAGNI 26
 				</div>
 				<div className="shadow-input h-[80%] w-[80%] backdrop-blur-lg rounded-xl border-1 p-3 flex flex-col items-center justify-center overflow-hidden text-[var(--white)]">
 					<div className=" text-2xl md:!text-4xl lg:!text-5xl font-bold">
