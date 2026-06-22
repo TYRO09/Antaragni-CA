@@ -1,14 +1,48 @@
 "use client";
 
-import { LeaderboardEntry } from "@/lib/dashboardMockData";
+import { useEffect, useState } from "react";
+import { getSortedData } from "@repo/firebase";
+import toast from "react-hot-toast";
 
-interface LeaderboardTabProps {
-  data: LeaderboardEntry[];
+interface LeaderboardEntry {
+  rank: number;
+  name: string;
+  points: number;
 }
 
-export function LeaderboardTab({ data }: LeaderboardTabProps) {
+export function LeaderboardTab() {
+  const [data, setData] = useState<Array<LeaderboardEntry>>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const getAllCAs = async () => {
+    try {
+      const fbData = await getSortedData("CAs25", "points", 20);
+      if (fbData != null) {
+        const entries = fbData.map((ca: any, index: number) => ({
+          rank: index + 1,
+          name: ca.data.name,
+          points: ca.data.points,
+        }));
+        setData(entries);
+      }
+    } catch (error) {
+      toast.error(`${error}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getAllCAs();
+  }, []);
+
   return (
-    <div className="w-full border border-white/10 bg-white/[0.02] backdrop-blur-md rounded-xl p-6 md:p-8 relative">
+    <div className="w-full border border-white/10 bg-white/[0.02] backdrop-blur-md rounded-xl p-6 md:p-8 relative min-h-[400px]">
+      {loading ? (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-white/50 text-sm">Loading Leaderboard...</div>
+        </div>
+      ) : (
       <div className="flex flex-col w-full">
         {/* Table Header */}
         <div className="grid grid-cols-12 text-[11px] font-sans font-semibold tracking-[0.18em] text-white/40 uppercase pb-5 px-6 md:px-8 border-b border-white/5">
@@ -93,6 +127,7 @@ export function LeaderboardTab({ data }: LeaderboardTabProps) {
           })}
         </div>
       </div>
+      )}
     </div>
   );
 }

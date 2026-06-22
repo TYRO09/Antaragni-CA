@@ -1,12 +1,13 @@
 "use client";
 
-import { ProfileData } from "@/lib/dashboardMockData";
+import { useStore } from "@repo/store";
 
-interface ProfileTabProps {
-  data: ProfileData;
-}
+export function ProfileTab() {
+  const { user } = useStore();
+  const data = user?.details;
 
-export function ProfileTab({ data }: ProfileTabProps) {
+  if (!data) return <div className="p-10 text-white/50 text-center">Loading profile...</div>;
+
   return (
     <div className="w-full border border-white/10 bg-white/[0.02] backdrop-blur-md rounded-xl p-8 md:p-10 relative">
       {/* Outer row wrapper with a single continuous vertical line */}
@@ -27,8 +28,8 @@ export function ProfileTab({ data }: ProfileTabProps) {
               <span className="text-[10px] font-sans font-semibold tracking-widest text-white/40 uppercase leading-none">
                 CA ID
               </span>
-              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.caId}>
-                {data.caId}
+              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.id}>
+                {data.id}
               </span>
             </div>
           </div>
@@ -44,8 +45,8 @@ export function ProfileTab({ data }: ProfileTabProps) {
               <span className="text-[10px] font-sans font-semibold tracking-widest text-white/40 uppercase leading-none">
                 Full Name
               </span>
-              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.fullName}>
-                {data.fullName}
+              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.name}>
+                {data.name}
               </span>
             </div>
           </div>
@@ -64,8 +65,8 @@ export function ProfileTab({ data }: ProfileTabProps) {
               <span className="text-[10px] font-sans font-semibold tracking-widest text-white/40 uppercase leading-none">
                 Email ID
               </span>
-              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.emailId}>
-                {data.emailId}
+              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.email}>
+                {data.email}
               </span>
             </div>
           </div>
@@ -81,8 +82,8 @@ export function ProfileTab({ data }: ProfileTabProps) {
               <span className="text-[10px] font-sans font-semibold tracking-widest text-white/40 uppercase leading-none">
                 Mobile Number
               </span>
-              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.mobileNumber}>
-                {data.mobileNumber}
+              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.phone}>
+                {data.phone}
               </span>
             </div>
           </div>
@@ -101,8 +102,8 @@ export function ProfileTab({ data }: ProfileTabProps) {
               <span className="text-[10px] font-sans font-semibold tracking-widest text-white/40 uppercase leading-none">
                 WhatsApp Number
               </span>
-              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.whatsappNumber}>
-                {data.whatsappNumber}
+              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.whatsapp}>
+                {data.whatsapp}
               </span>
             </div>
           </div>
@@ -118,8 +119,8 @@ export function ProfileTab({ data }: ProfileTabProps) {
               <span className="text-[10px] font-sans font-semibold tracking-widest text-white/40 uppercase leading-none">
                 College / University
               </span>
-              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.collegeName}>
-                {data.collegeName}
+              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.college}>
+                {data.college}
               </span>
             </div>
           </div>
@@ -156,8 +157,8 @@ export function ProfileTab({ data }: ProfileTabProps) {
               <span className="text-[10px] font-sans font-semibold tracking-widest text-white/40 uppercase leading-none">
                 Year of Study
               </span>
-              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.yearOfStudy}>
-                {data.yearOfStudy}
+              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 truncate" title={data.year}>
+                {data.year}
               </span>
             </div>
           </div>
@@ -177,8 +178,8 @@ export function ProfileTab({ data }: ProfileTabProps) {
               <span className="text-[10px] font-sans font-semibold tracking-widest text-white/40 uppercase leading-none">
                 Postal Address
               </span>
-              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 leading-relaxed break-words" title={data.postalAddress}>
-                {data.postalAddress}
+              <span className="text-[14px] md:text-[15px] font-sans font-medium text-white mt-1.5 leading-relaxed break-words" title={data.address}>
+                {data.address}
               </span>
             </div>
           </div>

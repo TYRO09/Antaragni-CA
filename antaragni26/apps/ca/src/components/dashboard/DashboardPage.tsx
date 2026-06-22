@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useStore } from "@repo/store";
 import Image from "next/image";
 import { assets } from "@/lib/assets";
-import { mockProfileData, mockLeaderboardData, mockTasksData } from "@/lib/dashboardMockData";
+// using live firebase data in the tabs
 import { ProfileTab } from "./ProfileTab";
 import { LeaderboardTab } from "./LeaderboardTab";
 import { TasksTab } from "./TasksTab";
@@ -85,11 +85,11 @@ export function DashboardPage() {
       {/* Tab Content (starts immediately below the tabs/hero) */}
       <div className="mt-6 lg:-mt-2 w-full">
         {activeTab === "PROFILE" ? (
-          <ProfileTab data={mockProfileData} />
+          <ProfileTab />
         ) : activeTab === "LEADERBOARD" ? (
-          <LeaderboardTab data={mockLeaderboardData} />
+          <LeaderboardTab />
         ) : activeTab === "TASKS" ? (
-          <TasksTab data={mockTasksData} />
+          <TasksTab />
         ) : activeTab === "IDEAS" ? (
           <IdeasTab />
         ) : (

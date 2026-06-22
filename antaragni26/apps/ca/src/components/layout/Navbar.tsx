@@ -126,7 +126,7 @@ export function Navbar() {
                     onClick={handleLogin}
                     className="relative overflow-hidden bg-accent text-white px-6 py-2.5 rounded-full font-sans font-medium text-[12px] uppercase tracking-[0.08em] hover:bg-red-600 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_18px_rgba(217,35,35,0.25)] hover:shadow-[0_0_30px_rgba(217,35,35,0.5)] group"
                   >
-                    <span className="relative z-10">Join Now</span>
+                    <span className="relative z-10">SIGN UP / JOIN US</span>
                   </button>
                 ) : pathname === "/dashboard" || pathname === "/register" ? (
                   <button
@@ -217,7 +217,7 @@ export function Navbar() {
                     }}
                     className="mt-4 w-full flex items-center justify-center bg-accent hover:bg-red-600 text-white py-3 rounded-full font-sans font-medium text-[12px] uppercase tracking-[0.12em] transition-colors duration-300"
                   >
-                    Join Now
+                    SIGN UP / JOIN US
                   </button>
                 ) : pathname === "/dashboard" || pathname === "/register" ? (
                   <button
