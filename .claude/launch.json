@@ -1,0 +1,13 @@
+{
+	"version": "0.0.1",
+	"configurations": [
+		{
+			"name": "events-registration",
+			"runtimeExecutable": "npm",
+			"runtimeArgs": ["run", "dev:preview"],
+			"cwd": "antaragni26/apps/events-registration",
+			"port": 3010,
+			"autoPort": true
+		}
+	]
+}
