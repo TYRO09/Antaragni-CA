@@ -4,43 +4,53 @@
 @plugin "@tailwindcss/typography";
 
 /* ============ ANTARAGNI '26 — DESIGN TOKENS ============
-   Color-grading pass: richer "printed-poster" dark (not digital black),
-   fluorescent-ink neons (a touch matured), warm festival accents. */
+   THE ANTARAGNI PALETTE — fire only. Molten gold (the fest's heritage
+   color), ember orange, flame, crimson and deep maroon on warm charcoal.
+   No neons, no cool hues. Premium, mature, energetic.
+
+   NOTE: legacy var names (--lime/--pink/--violet/--cyan) are kept as
+   ALIASES into the fire family so every component re-skins automatically. */
 @theme {
-	--color-background: #140d1e; /* midnight ink — rich, not pure black */
-	--color-foreground: #f6f1ea; /* warm paper white (was cold #f4f1fa) */
-	--color-primary: #c7f441; /* fluorescent lime */
-	--color-secondary: #ff6ec7; /* hot pink */
-	--color-accent: #7c3aed; /* electric violet */
+	--color-background: #1a1114; /* warm charcoal — fire-lit dark */
+	--color-foreground: #f7f0e4; /* warm cream white */
+	--color-primary: #ffc94d; /* molten gold — the Antaragni color */
+	--color-secondary: #ff5f3c; /* flame */
+	--color-accent: #d92643; /* crimson */
 }
 
 :root {
-	--color-background: #140d1e;
-	--color-foreground: #f6f1ea;
-	--color-primary: #c7f441;
-	--color-secondary: #ff6ec7;
-	--color-accent: #7c3aed;
+	--color-background: #1a1114;
+	--color-foreground: #f7f0e4;
+	--color-primary: #ffc94d;
+	--color-secondary: #ff5f3c;
+	--color-accent: #d92643;
 
-	/* fluorescent-ink neons — identity colors, gently warmed/deepened */
-	--lime: #cdf24d;
-	--pink: #ff6ec7;
-	--violet: #8248f0;
-	--orange: #ff8a3d;
-	--cyan: #56d6f0; /* slightly warmer, less pure-RGB cyan */
+	/* THE fire family */
+	--gold: #ffc94d; /* molten gold — heritage highlight */
+	--ember: #ff8a3d; /* burnt orange */
+	--flame: #ff5f3c; /* hot flame */
+	--crimson: #d92643; /* deep fire */
+	--maroon: #8c2333; /* smoldering dark red */
+	--amber: #ffb769; /* soft amber light */
+	--cream: #fff1d6; /* paper cream */
 
-	/* warm festival accents — used only for small details/highlights */
-	--sun: #ff6b35; /* sunset orange */
-	--yellow: #ffd166; /* festival yellow */
-	--cream: #fff2d8; /* paper cream */
-	--warm-red: #ef476f;
+	/* legacy aliases — old names, new fire values (auto re-skins the site) */
+	--lime: var(--gold);
+	--pink: var(--flame);
+	--violet: var(--maroon);
+	--cyan: var(--amber);
+	--orange: var(--ember);
+	--sun: #ff6b35;
+	--yellow: var(--gold);
+	--warm-red: var(--crimson);
 
 	--font-sans: var(--font-inter);
 	--font-title: var(--font-rakkas);
 
-	/* solid panel ink — replaces glassmorphism; warm plum, not black */
-	--ink: #1b1228;
-	--ink-2: #221634; /* raised panel */
-	--paper: #f6f1ea;
+	/* solid panel ink — warm maroon-charcoal, never blue-black */
+	--ink: #241419;
+	--ink-2: #2c1a1f; /* raised panel */
+	--paper: #f7f0e4;
 }
 
 /* condensed poster face (Anton) for massive headline stacks */
@@ -70,12 +80,12 @@ body {
 	background: #0a0612;
 }
 ::-webkit-scrollbar-thumb {
-	background: #2c2140;
+	background: #3a2530;
 	border-radius: 999px;
-	border: 2px solid #0a0612;
+	border: 2px solid #1c1218;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: #43325f;
+	background: #55333f;
 }
 
 /* custom cursor takes over on fine pointers */
@@ -95,14 +105,14 @@ body {
 /* ============ UTILITIES ============ */
 
 .text-gradient {
-	background: linear-gradient(92deg, var(--lime) 0%, var(--pink) 48%, var(--violet) 100%);
+	background: linear-gradient(92deg, var(--gold) 0%, var(--flame) 48%, var(--crimson) 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
 }
 
 .text-gradient-pink {
-	background: linear-gradient(92deg, var(--pink) 0%, var(--orange) 60%, var(--lime) 120%);
+	background: linear-gradient(92deg, var(--flame) 0%, var(--ember) 60%, var(--gold) 120%);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
@@ -119,10 +129,12 @@ body {
 }
 
 /* .glass is DEAD as glassmorphism — every legacy usage now renders as a
-   solid screen-printed ink panel with a hard offset shadow */
+   solid screen-printed ink panel with paper tooth and a hard offset shadow */
 .glass {
-	background: var(--ink);
-	border: 2px solid rgba(244, 241, 250, 0.16);
+	background: var(--ink)
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23p)'/%3E%3C/svg%3E")
+		repeat;
+	border: 2px solid rgba(246, 241, 234, 0.15);
 	box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
@@ -137,16 +149,16 @@ body {
 /* sticker buttons — solid ink, hard shadow, slight tilt; no glow, no blur */
 .btn-festival {
 	@apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-transform duration-200;
-	background: linear-gradient(92deg, var(--violet), var(--pink));
+	background: linear-gradient(92deg, var(--warm-red), var(--sun));
 	color: #fff;
-	border: 2px solid #0a0612;
+	border: 2px solid #1c1218;
 	border-radius: 10px;
-	box-shadow: 5px 5px 0 var(--lime);
+	box-shadow: 5px 5px 0 var(--yellow);
 	transform: rotate(-1.2deg);
 }
 .btn-festival:hover {
 	transform: rotate(0.5deg) translate(-2px, -2px);
-	box-shadow: 7px 7px 0 var(--lime);
+	box-shadow: 7px 7px 0 var(--yellow);
 }
 
 .btn-lime {
@@ -173,7 +185,7 @@ body {
 	border-color: var(--lime);
 	border-style: solid;
 	color: var(--lime);
-	box-shadow: 4px 4px 0 rgba(199, 244, 65, 0.35);
+	box-shadow: 4px 4px 0 rgba(255, 201, 77, 0.35);
 	transform: translate(-1px, -1px);
 }
 
@@ -223,6 +235,38 @@ body {
 	line-height: 0.82;
 	white-space: nowrap;
 }
+/* warm variant — ember-lit outline for the landing wallpaper */
+.backdrop-word-warm {
+	-webkit-text-stroke: 1px rgba(255, 183, 105, 0.13);
+}
+
+/* landing wallpaper rows: fade toward the edges so type never clutters */
+.hero-rows {
+	mask-image: radial-gradient(95% 85% at 48% 45%, black 35%, transparent 96%);
+	-webkit-mask-image: radial-gradient(95% 85% at 48% 45%, black 35%, transparent 96%);
+}
+
+/* stage beam falling on the hero wordmark */
+@keyframes beam-sway {
+	0%, 100% { transform: translateX(-50%) rotate(-2.5deg); opacity: 0.75; }
+	50% { transform: translateX(-50%) rotate(2.5deg); opacity: 1; }
+}
+.hero-beam {
+	background: linear-gradient(
+		180deg,
+		rgba(255, 201, 77, 0.16) 0%,
+		rgba(255, 138, 61, 0.07) 45%,
+		transparent 72%
+	);
+	clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%);
+	filter: blur(22px);
+	mix-blend-mode: screen;
+	transform-origin: 50% 0%;
+	animation: beam-sway 14s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+	.hero-beam { animation: none; }
+}
 
 /* animated gradient sweeping through display type */
 @keyframes gradient-sweep {
@@ -233,11 +277,11 @@ body {
 .text-gradient-live {
 	background: linear-gradient(
 		100deg,
-		var(--lime),
+		var(--gold),
 		var(--cream),
-		var(--pink),
-		var(--violet),
-		var(--lime)
+		var(--ember),
+		var(--crimson),
+		var(--gold)
 	);
 	background-size: 300% 100%;
 	-webkit-background-clip: text;
@@ -301,16 +345,17 @@ body {
 
 /* ============ HERO WORDMARK (layered chrome poster type) ============ */
 
-/* premium chrome sweep — soft cream→pink→violet→cyan, no harsh rainbow */
+/* molten-metal sweep — cream → gold → ember → crimson → maroon;
+   fire moving through the letters */
 .text-chrome {
 	background: linear-gradient(
 		105deg,
-		#fdfbff 0%,
-		#ffd9f2 18%,
-		#ff6ec7 38%,
-		#a78bfa 58%,
-		#4dd8ff 78%,
-		#fdfbff 100%
+		#fff6e5 0%,
+		#ffc94d 22%,
+		#ff8a3d 44%,
+		#d92643 66%,
+		#8c2333 84%,
+		#fff6e5 100%
 	);
 	background-size: 240% 100%;
 	-webkit-background-clip: text;
@@ -327,13 +372,12 @@ body {
 	transform: scaleY(1.12);
 	transform-origin: bottom left;
 }
-.hero-word-echo {
-	-webkit-text-stroke: 1.5px rgba(199, 244, 65, 0.5);
-	color: transparent;
-}
-.hero-word-ink {
-	color: #0a0612;
-	-webkit-text-stroke: 1px rgba(244, 241, 250, 0.18);
+/* real depth on the molten wordmark: hard poster shadow + ember bloom.
+   NOTE: no -webkit-text-stroke here — it artifacts against
+   background-clip:text (outlines the glyph counters misaligned). */
+.hero-fire-shadow {
+	filter: drop-shadow(0.045em 0.055em 0 rgba(20, 10, 12, 0.92))
+		drop-shadow(0 0.12em 0.5em rgba(217, 38, 67, 0.42));
 }
 
 /* ============ POSTER RAIL (horizontal stage scroll) ============ */
@@ -353,6 +397,91 @@ body {
 .rail > * {
 	scroll-snap-align: start;
 	flex-shrink: 0;
+}
+
+/* ============ CINEMA (graded photography backdrops) ============ */
+
+@keyframes ken-burns {
+	0% { transform: scale(1) translate(0, 0); }
+	100% { transform: scale(1.09) translate(-1.2%, -1%); }
+}
+.cinema-img {
+	filter: contrast(1.12) saturate(0.8) brightness(0.88);
+	animation: ken-burns 26s ease-in-out infinite alternate;
+	will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+	.cinema-img {
+		animation: none;
+	}
+}
+
+/* ============ FESTIVAL LOADER ============ */
+
+@keyframes loader-flicker {
+	0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 107, 53, 0.5)); }
+	50% { filter: drop-shadow(0 0 18px rgba(255, 138, 61, 0.85)); }
+}
+.loader-mark {
+	animation: loader-flicker 2.2s ease-in-out 1.6s infinite;
+}
+/* the real logo used as a mask — ghost + rising molten fill */
+.loader-logo-ghost,
+.loader-logo-fire {
+	-webkit-mask: url("/logo.png") center / contain no-repeat;
+	mask: url("/logo.png") center / contain no-repeat;
+}
+.loader-logo-ghost {
+	background: rgba(247, 240, 228, 0.1);
+}
+@keyframes loader-ignite {
+	to { clip-path: inset(0 0 0 0); }
+}
+@keyframes loader-molten {
+	from { background-position: 50% 100%; }
+	to { background-position: 50% 0%; }
+}
+.loader-logo-fire {
+	background: linear-gradient(
+		180deg,
+		#ffc94d 0%,
+		#ff8a3d 32%,
+		#d92643 68%,
+		#8c2333 100%
+	);
+	background-size: 100% 240%;
+	background-position: 50% 100%;
+	clip-path: inset(100% 0 0 0);
+	animation:
+		loader-ignite 1.5s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards,
+		loader-molten 2.6s ease-in-out 1.7s infinite alternate;
+}
+@keyframes loader-stamp {
+	from { opacity: 0; transform: translateY(14px) scale(0.94); }
+	to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.loader-word {
+	opacity: 0;
+	animation: loader-stamp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.25s forwards;
+}
+.loader-sub {
+	opacity: 0;
+	animation: loader-stamp 0.5s ease-out 1.45s forwards;
+}
+@keyframes loader-fill {
+	from { transform: scaleX(0); }
+	to { transform: scaleX(1); }
+}
+.loader-bar {
+	background: linear-gradient(90deg, var(--crimson), var(--ember), var(--gold));
+	transform: scaleX(0);
+	animation: loader-fill 1.9s cubic-bezier(0.65, 0, 0.35, 1) 0.1s forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+	.loader-logo-fire { animation-duration: 0.01s, 0.01s; animation-delay: 0s, 0s; }
+	.loader-mark { animation: none; }
+	.loader-word, .loader-sub { animation-duration: 0.01s; animation-delay: 0s; }
+	.loader-bar { animation-duration: 0.01s; }
 }
 
 /* marker highlight behind a phrase */
@@ -381,6 +510,119 @@ body {
 }
 .marquee-paused:hover .marquee-track {
 	animation-play-state: paused;
+}
+
+/* ============ CARD HOVER FX ============
+   The card itself reacts: lifts + scales, the photo zooms slower inside,
+   and a light sweep runs across like stage light hitting the cardstock. */
+.card-fx {
+	transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.group:hover .card-fx {
+	transform: scale(1.045) translateY(-6px);
+}
+.card-fx > img {
+	transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) !important;
+}
+.group:hover .card-fx > img {
+	transform: scale(1.09);
+}
+.card-fx::after {
+	content: "";
+	position: absolute;
+	inset: -30%;
+	background: linear-gradient(
+		105deg,
+		transparent 42%,
+		rgba(255, 220, 160, 0.22) 50%,
+		transparent 58%
+	);
+	transform: translateX(-130%) rotate(0.001deg);
+	pointer-events: none;
+	z-index: 2;
+}
+.group:hover .card-fx::after {
+	transition: transform 0.85s cubic-bezier(0.65, 0, 0.35, 1);
+	transform: translateX(130%) rotate(0.001deg);
+}
+@media (prefers-reduced-motion: reduce) {
+	.card-fx,
+	.card-fx > img,
+	.card-fx::after {
+		transition: none;
+	}
+}
+
+/* ============ REGISTRATION ARENA ============
+   The six ported roadtrip registration forms keep their logic but get
+   re-skinned here: glass container → ink panel, pill button → sticker,
+   inputs → warm ink stock. Scoped so nothing else is touched. */
+
+.reg-arena section {
+	min-height: unset !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+/* the forms render their own big title — we already print "Enter the Arena" */
+.reg-arena h1 {
+	display: none;
+}
+.reg-arena [class*="backdrop-blur"] {
+	background: var(--ink) !important;
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+	border: 2px solid rgba(246, 241, 234, 0.15) !important;
+	border-radius: 12px !important;
+	box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5);
+}
+.reg-arena label {
+	color: rgba(247, 240, 228, 0.75) !important;
+	text-transform: uppercase;
+	font-size: 11px !important;
+	letter-spacing: 0.14em;
+	font-weight: 700;
+}
+.reg-arena input,
+.reg-arena select,
+.reg-arena textarea {
+	background: #201219 !important;
+	border: 2px solid rgba(246, 241, 234, 0.14) !important;
+	border-radius: 8px !important;
+	color: var(--paper) !important;
+	box-shadow: none !important;
+}
+.reg-arena input:focus,
+.reg-arena select:focus,
+.reg-arena textarea:focus {
+	border-color: var(--gold) !important;
+	outline: none !important;
+}
+.reg-arena button[type="submit"] {
+	background: var(--gold) !important;
+	color: #1a1114 !important;
+	border: 2px solid #1a1114 !important;
+	border-radius: 10px !important;
+	box-shadow: 5px 5px 0 var(--flame) !important;
+	transform: rotate(-1deg);
+	text-transform: uppercase;
+	font-size: 0.95rem !important;
+	letter-spacing: 0.08em;
+	transition: transform 0.2s, box-shadow 0.2s;
+}
+.reg-arena button[type="submit"]:hover {
+	transform: rotate(0.5deg) translate(-2px, -2px);
+	box-shadow: 7px 7px 0 var(--flame) !important;
+}
+
+/* card wall — cards deal themselves in when the filter changes */
+@keyframes wall-deal {
+	from { opacity: 0; transform: translateY(26px) rotate(0deg) scale(0.96); }
+}
+.wall-card {
+	animation: wall-deal 0.55s cubic-bezier(0.19, 1, 0.22, 1) backwards;
+}
+@media (prefers-reduced-motion: reduce) {
+	.wall-card { animation: none; }
 }
 
 /* kinetic lineup — gradient fill wipes in from the left on row hover */
@@ -414,7 +656,7 @@ body {
 	inset: 0;
 	background:
 		radial-gradient(60% 50% at 50% 0%, rgba(255, 138, 61, 0.05), transparent 70%),
-		radial-gradient(50% 40% at 100% 100%, rgba(255, 110, 199, 0.04), transparent 70%);
+		radial-gradient(50% 40% at 100% 100%, rgba(255, 95, 60, 0.04), transparent 70%);
 }
 
 /* glow card hover */
@@ -431,7 +673,7 @@ body {
 	transition: opacity 0.5s;
 	background: radial-gradient(
 		600px circle at var(--mx, 50%) var(--my, 50%),
-		rgba(199, 244, 65, 0.08),
+		rgba(255, 178, 76, 0.09),
 		transparent 45%
 	);
 	pointer-events: none;
